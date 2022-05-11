@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,14 +17,18 @@ public class Xaridor {
     private Integer id;
 
     @Column(nullable = false)
+    @NotNull(message = "Ism bo'sh bo'lmasligi kerak")
     private String ism;
 
     @Column(nullable = false)
+    @NotNull(message = "Familya bo'sh bo'lmasligi kerak")
     private String familya;
 
     @Column(nullable = false, unique = true)
+    @NotNull(message = "Telefon raqam bo'sh bo'lmasligi kerak")
     private String telraqam;
 
     @Column(nullable = false)
+    @NotNull(message = "Manzil bo'sh bo'lmasligi kerak")
     private String manzil;
 }

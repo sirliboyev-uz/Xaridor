@@ -52,6 +52,10 @@ public class XaridorService {
     }
     public String yangilash(Xaridor xaridor, Integer id){
         Optional<Xaridor> optionalXaridor = xaridorRepository.findById(id);
+        boolean b = xaridorRepository.existsByTelraqamAndIdNot(xaridor.getTelraqam(), id);
+        if (b){
+            return "Bunday xaridor mavjud";
+        }
         if (optionalXaridor.isPresent()){
             Xaridor xaridor1 = optionalXaridor.get();
             xaridor1.setFamilya(xaridor.getFamilya());
@@ -61,6 +65,6 @@ public class XaridorService {
             xaridorRepository.save(xaridor1);
             return "Muvaffaqiyatli yangilandi!";
         }
-        return "Topilmadi";
+        else return "Topilmadi";
     }
 }
