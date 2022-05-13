@@ -12,10 +12,10 @@ import java.util.Optional;
 public class XaridorService {
     @Autowired
     XaridorRepository xaridorRepository;
-    public String xaridorJoylash(Xaridor xaridor){
+    public Boolean xaridorJoylash(Xaridor xaridor){
         boolean telRaqam = xaridorRepository.existsByTelraqam(xaridor.getTelraqam());
         if (telRaqam){
-            return "Bunday xaridor mavjud";
+            return false;
         }
         Xaridor xaridor1 = new Xaridor();
         xaridor1.setFamilya(xaridor.getFamilya());
@@ -23,7 +23,7 @@ public class XaridorService {
         xaridor1.setTelraqam(xaridor.getTelraqam());
         xaridor1.setManzil(xaridor.getManzil());
         xaridorRepository.save(xaridor1);
-        return "Ma'lumot joylandi!";
+        return true;
     }
 
     public List<Xaridor> xaridorlar(){
